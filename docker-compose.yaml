@@ -1,0 +1,19 @@
+version: "3.7"
+networks:
+  default:
+    external:
+      name: traefik_network
+services:
+  baccarat:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    ports:
+      - 5000
+    container_name: playground-spiffbet-baccarat
+    restart: unless-stopped
+    labels:
+      - "traefik.backend=baccarat"
+      - "traefik.frontend.rule=Host:playground-spiffbet-baccarat.uni-bit.com"
+      - "traefik.docker.network=traefik_network"
+      - "traefik.frontend.entryPoints=https"

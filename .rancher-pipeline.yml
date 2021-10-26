@@ -1,0 +1,11 @@
+stages:
+- name: Docker build
+  steps:
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: underdef/bacarat:app
+      pushRemote: true
+      registry: index.docker.io
+timeout: 60
+notification: {}
